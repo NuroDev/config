@@ -1,0 +1,106 @@
+---
+homebrew_taps:
+  - blacktop/homebrew-tap
+  - henrygd/beszel
+
+homebrew_installed_packages:
+  # - act
+  # - ansible
+  # - ansible-lint
+  # - awscli
+  # - b2-tools
+  - bat
+  - beszel-agent
+  - btop
+  - bun
+  # - colima
+  - croc
+  - deno
+  # - docker
+  - docker-completion
+  - dockutil
+  # - dog
+  - duckdb
+  # - duf
+  # - dust
+  - ffmpeg
+  # - figlet
+  - fnm
+  - gh
+  # - gifski
+  - git
+  # - go
+  # - gping
+  # - helm
+  # - hexyl
+  - htop
+  - httpstat
+  # - hyperfine
+  - imagemagick
+  - jq
+  # - kubernetes-cli
+  - lazydocker
+  - lazygit
+  # - lporg
+  # - lsd
+  # - m-cli
+  - mas
+  - nano
+  - nanorc
+  - nmap
+  # - nushell
+  - oha
+  - ollama
+  - opentofu
+  # - plow
+  # - pocketbase
+  - ripgrep
+  - rustup
+  - sl
+  - spaceship
+  - ssh-copy-id
+  - starship
+  - terraform
+  - tokei
+  - trash
+  - tree
+  - watch
+  - wget
+  - witr
+  - yq
+  - zsh
+  - zsh-autosuggestions
+  - zsh-history-substring-search
+  - zsh-syntax-highlighting
+
+homebrew_cask_apps:
+  - arc
+  - brooklyn
+  - cleanshot
+  # - cyberduck
+  # - dbngin
+  - discord
+  - font-fira-code
+  - font-jetbrains-mono
+  # - font-montserrat
+  # - font-open-sans
+  # - font-quicksand
+  - ghostty
+  - github
+  - hot
+  # - iina
+  # - iterm2
+  # - monitorcontrol
+  # - nucleo
+  - orbstack
+  - qlcolorcode
+  - qlmarkdown
+  - qlstephen
+  - quicklook-json
+  - raycast
+  - rocket
+  - spotify
+  - tableplus
+  # - utm
+  - visual-studio-code
+  - yaak

@@ -1,0 +1,15 @@
+---
+- name: Check access to assets repository
+  ansible.builtin.command:
+    cmd: git ls-remote https://github.com/nurodev/assets.git HEAD
+  register: assets_accessible
+  ignore_errors: true
+  changed_when: false
+
+- name: Clone assets repository
+  ansible.builtin.git:
+    repo: https://github.com/nurodev/assets.git
+    dest: "{{ ansible_facts['env']['HOME'] }}/assets"
+    version: main
+    accept_hostkey: true
+  when: assets_accessible.rc == 0

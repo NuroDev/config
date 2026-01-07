@@ -1,0 +1,4 @@
+---
+rust_crates:
+  - cargo-edit
+  - tock

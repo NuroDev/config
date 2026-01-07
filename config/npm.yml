@@ -1,0 +1,13 @@
+---
+fnm_npm_global_packages:
+  - name: "@antfu/ni"
+  - name: "@anthropic-ai/claude-code"
+  - name: corepack
+  - name: jsr
+  - name: npm
+  - name: opencode-ai
+  - name: pnpm
+  - name: wrangler
+
+fnm_nodejs_versions:
+  - "lts-latest"

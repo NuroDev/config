@@ -1,0 +1,6 @@
+---
+skip_list:
+  - fqcn
+  - name[missing]
+  - no-changed-when
+  - risky-file-permissions

@@ -1,0 +1,9 @@
+---
+collections:
+  - name: community.crypto
+  - name: community.general
+  - name: geerlingguy.mac
+roles:
+  - name: elliotweiser.osx-command-line-tools
+  - name: gantsign.oh-my-zsh
+  - name: geerlingguy.dotfiles

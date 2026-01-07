@@ -1,0 +1,42 @@
+---
+configure_dock: true
+
+dockitems_remove:
+  - "App Store"
+  - Contacts
+  - FaceTime
+  - Launchpad
+  - Mail
+  - Maps
+  - Messages
+  - Music
+  - News
+  - Notes
+  - Photos
+  - Podcasts
+  - Reminders
+  - Safari
+  - System Preferences
+  - TV
+dockitems_persist:
+  - name: "Arc"
+    path: "/Applications/Arc.app/"
+    pos: 2
+  - name: "Calendar"
+    path: "/Applications/Calendar.app/"
+    pos: 3
+  - name: "Spotify"
+    path: "/Applications/Spotify.app/"
+    pos: 4
+  - name: "Visual Studio Code"
+    path: "/Applications/Visual Studio Code.app/"
+    pos: 5
+  - name: "Ghostty"
+    path: "/Applications/Ghostty.app/"
+    pos: 6
+  - name: "Yaak"
+    path: "/Applications/Yaak.app/"
+    pos: 7
+  - name: "Discord"
+    path: "/Applications/Discord.app/"
+    pos: 8

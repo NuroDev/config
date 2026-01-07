@@ -1,0 +1,70 @@
+---
+# fnm is installed via Homebrew, this task handles configuration
+
+- name: Install Node.js versions via fnm
+  ansible.builtin.shell:
+    cmd: |
+      set -o pipefail
+      eval "$(fnm env)"
+      fnm install {{ item }}
+    executable: /bin/zsh
+  environment:
+    PATH: "/opt/homebrew/bin:{{ ansible_facts['env']['PATH'] }}"
+  register: fnm_install_result
+  changed_when: "'Installing' in fnm_install_result.stderr"
+  with_items: "{{ fnm_nodejs_versions }}"
+
+- name: Check if default Node.js version is set
+  ansible.builtin.stat:
+    path: "{{ ansible_facts['env']['HOME'] }}/Library/Application Support/fnm/aliases/default"
+  register: fnm_default_alias
+
+- name: Set default Node.js version
+  ansible.builtin.shell:
+    cmd: |
+      set -o pipefail
+      eval "$(fnm env)"
+      fnm use {{ fnm_nodejs_versions | first }}
+      fnm default $(node --version)
+    executable: /bin/zsh
+  environment:
+    PATH: "/opt/homebrew/bin:{{ ansible_facts['env']['PATH'] }}"
+  when: not fnm_default_alias.stat.exists
+
+- name: Get default Node.js bin path
+  ansible.builtin.shell:
+    cmd: |
+      set -o pipefail
+      eval "$(fnm env)"
+      fnm use {{ fnm_nodejs_versions | first }} > /dev/null 2>&1
+      dirname $(which node)
+    executable: /bin/zsh
+  environment:
+    PATH: "/opt/homebrew/bin:{{ ansible_facts['env']['PATH'] }}"
+  register: fnm_node_bin_path
+  changed_when: false
+
+- name: Install global npm packages
+  community.general.npm:
+    name: "{{ item.name }}"
+    global: true
+    state: present
+    version: "{{ item.version | default(omit) }}"
+  environment:
+    PATH: "{{ fnm_node_bin_path.stdout }}:{{ ansible_facts['env']['PATH'] }}"
+  with_items: "{{ fnm_npm_global_packages }}"
+  when: fnm_npm_global_packages is defined and fnm_npm_global_packages | length > 0
+
+- name: Ensure fnm zsh plugin directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_facts['env']['HOME'] }}/.oh-my-zsh/plugins/fnm"
+    state: directory
+    mode: "0755"
+
+- name: Generate fnm zsh completions
+  ansible.builtin.shell:
+    cmd: "fnm completions --shell zsh > {{ ansible_facts['env']['HOME'] }}/.oh-my-zsh/plugins/fnm/_fnm"
+    executable: /bin/zsh
+    creates: "{{ ansible_facts['env']['HOME'] }}/.oh-my-zsh/plugins/fnm/_fnm"
+  environment:
+    PATH: "/opt/homebrew/bin:{{ ansible_facts['env']['PATH'] }}"
