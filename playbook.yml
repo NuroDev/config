@@ -7,13 +7,14 @@
     - config/oh-my-zsh.yml
     - config/pacman.yml
     - config/rust.yml
+  pre_tasks:
+    - ansible.builtin.import_tasks: tasks/pacman.yml
+    - ansible.builtin.import_tasks: tasks/system.yml
   roles:
     - role: geerlingguy.dotfiles
       when: configure_dotfiles
     - role: gantsign.oh-my-zsh
   tasks:
-    - ansible.builtin.import_tasks: tasks/pacman.yml
     - ansible.builtin.import_tasks: tasks/assets.yml
     - ansible.builtin.import_tasks: tasks/extra-packages.yml
     - ansible.builtin.import_tasks: tasks/fnm.yml
-    - ansible.builtin.import_tasks: tasks/system.yml
