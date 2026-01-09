@@ -19,5 +19,4 @@ dotfiles_files:
   - .gitignore
   - .nanorc
   - .nirc
-  - .osx
   - .zshrc

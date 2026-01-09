@@ -1,0 +1,48 @@
+---
+# Official Arch packages (via pacman)
+pacman_packages:
+  - bat
+  - btop
+  - croc
+  - deno
+  - docker
+  - duckdb
+  - ffmpeg
+  - ghostty
+  - git
+  - github-cli
+  - htop
+  - imagemagick
+  - jq
+  - lazydocker
+  - lazygit
+  - nano
+  - nmap
+  - oha
+  - openssh
+  - procps-ng
+  - ripgrep
+  - rustup
+  - starship
+  - terraform
+  - tokei
+  - trash-cli
+  - tree
+  - wget
+  - yay
+  - yq
+  - zsh
+  - zsh-autosuggestions
+  - zsh-history-substring-search
+  - zsh-syntax-highlighting
+
+# AUR packages (via yay)
+aur_packages:
+  - 1password
+  - bun-bin
+  - discord
+  - fnm
+  - ollama
+  - opentofu
+  - spotify
+  - visual-studio-code-bin

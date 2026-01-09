@@ -1,25 +1,19 @@
 ---
-- name: Configure macOS
+- name: Configure Omarchy
   hosts: localhost
   vars_files:
-    - config/dock.yml
     - config/dotfiles.yml
-    - config/homebrew.yml
-    - config/mas.yml
     - config/npm.yml
     - config/oh-my-zsh.yml
+    - config/pacman.yml
     - config/rust.yml
   roles:
-    - role: elliotweiser.osx-command-line-tools
-    - role: geerlingguy.mac.homebrew
     - role: geerlingguy.dotfiles
       when: configure_dotfiles
-    - role: geerlingguy.mac.mas
-      when: (mas_installed_apps | bool) or (mas_installed_app_ids | bool)
-    - role: geerlingguy.mac.dock
-      when: configure_dock
     - role: gantsign.oh-my-zsh
   tasks:
+    - ansible.builtin.import_tasks: tasks/pacman.yml
     - ansible.builtin.import_tasks: tasks/assets.yml
     - ansible.builtin.import_tasks: tasks/extra-packages.yml
     - ansible.builtin.import_tasks: tasks/fnm.yml
+    - ansible.builtin.import_tasks: tasks/system.yml

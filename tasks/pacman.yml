@@ -1,0 +1,20 @@
+---
+- name: Update pacman cache
+  community.general.pacman:
+    update_cache: true
+  become: true
+
+- name: Install official packages via pacman
+  community.general.pacman:
+    name: "{{ pacman_packages }}"
+    state: present
+  become: true
+  when: pacman_packages is defined and pacman_packages | length > 0
+
+- name: Install AUR packages via yay
+  kewlfft.aur.aur:
+    name: "{{ item }}"
+    use: yay
+    state: present
+  loop: "{{ aur_packages }}"
+  when: aur_packages is defined and aur_packages | length > 0

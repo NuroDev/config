@@ -9,7 +9,7 @@
     cmd: rustup-init -y --no-modify-path
     executable: /bin/zsh
   environment:
-    PATH: "/opt/homebrew/bin:{{ ansible_facts['env']['PATH'] }}"
+    PATH: "/usr/bin:{{ ansible_facts['env']['PATH'] }}"
   when: not cargo_installed.stat.exists
 
 - name: Install Cargo crates

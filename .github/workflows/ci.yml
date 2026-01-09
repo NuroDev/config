@@ -1,13 +1,10 @@
 ---
-# This workflow is a fork of this CI workflow from @geerlingguy
-# https://github.com/geerlingguy/mac-dev-playbook/blob/master/.github/workflows/ci.yml
-
 name: CI
 
 on:
   push:
     branches:
-      - main
+      - omarchy
 
 jobs:
   lint:

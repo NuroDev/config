@@ -1,33 +1,27 @@
-# 🔧 Config
+# Config
 
-This repository contains all of the configuration files & scripts I use to tset up a brand new macOS device.
+This repository contains all of the configuration files & scripts I use to set up a brand new [Omarchy](https://omarchy.org) device.
 
-The core of this project uses [Ansible](https://www.ansible.com/) to manage the configuration of my macOS devices via a single playbook & some community made tools to streamlin the process.
+The core of this project uses [Ansible](https://www.ansible.com/) to manage the configuration of my Omarchy system via a single playbook & some community made tools to streamline the process.
 
-## 🧰 What I use
+## What I use
 
-- [Arc](https://arc.net/) is my preferred browser
-- [Raycast](https://www.raycast.com/) is better than Spotlight
 - [Ghostty](https://ghostty.org/) as my terminal of choice
 - zsh + [oh-my-zsh](https://ohmyz.sh/) as my shell (+plugins)
 - [OpenCode](https://opencode.ai/) & [Claude Code](https://claude.com/product/claude-code) for AI tooling
 - [`fnm`](https://github.com/Schniz/fnm) for managing Node.js versions
-- [Yaak](https://yaak.app/) makes API requests
-- [OrbStack](https://orbstack.dev/) runs my local containers
+- [Visual Studio Code](https://code.visualstudio.com/) as my editor
+- [1Password](https://1password.com/) for password management
 
-## 🦄 Get Started
+## Get Started
 
 Before you can get started using this project, you will need to do a few things:
 
 <details>
 
-<summary>Install XCode Command Line Tools</summary>
+<summary>Install Omarchy</summary>
 
-A requirement for any macOS device used for development is to have the XCode Command Line Tools installed. You can install them by running the following command:
-
-```zsh
-xcode-select --install
-```
+This playbook is designed to supplement an existing [Omarchy](https://omarchy.org) installation. Follow the [Omarchy manual](https://learn.omacom.io/2/the-omarchy-manual) to install Omarchy first.
 
 </details>
 
@@ -37,24 +31,10 @@ xcode-select --install
 
 <summary>Install Ansible</summary>
 
-This project uses [Ansible](https://www.ansible.com/) to manage the configuration of my macOS devices. The initial setup requires Ansible to be installed via pip. Once the first run of the playbook is complete & Homebrew is installed you can uninstall the pip version of Ansible.
-
-Add Python 3 to your `$PATH` environment variable by running the following command:
+This project uses [Ansible](https://www.ansible.com/) to manage the configuration. Install it via pacman:
 
 ```zsh
-export PATH="$HOME/Library/Python/3.9/bin:/opt/homebrew/bin:$PATH"
-```
-
-Upgrade pip3 to the latest version by running the following command:
-
-```zsh
-sudo pip3 install --upgrade pip
-```
-
-Then finally install Ansible by running the following command:
-
-```zsh
-pip3 install ansible
+sudo pacman -S ansible
 ```
 
 </details>
@@ -71,9 +51,6 @@ Once the above tools are installed, you can clone this repository by running the
 git clone https://github.com/nurodev/config.git ~/config
 ```
 
-macOS ships with `git` pre-installed, so you should be able to run the above command without any issues.
-Otherwise you can download the repository as a `.zip` file from the GitHub website.
-
 </details>
 
 ---
@@ -82,7 +59,7 @@ Otherwise you can download the repository as a `.zip` file from the GitHub websi
 
 <summary>Install Ansible Collections</summary>
 
-There is a few Ansible community made tools & collections, namely `community.general`, that this project relies on to get up and running. As such we need to install them locally. This can be done by running the `install` task using `make`:
+There are a few Ansible community made tools & collections that this project relies on. Install them by running the `install` task using `make`:
 
 ```zsh
 cd ~/config && make install
@@ -96,16 +73,13 @@ cd ~/config && make install
 
 <summary>Run the playbook</summary>
 
-With everything needed installed, you can now run the playbook to actually configure your macOS device. You can do this by running the following command:
+With everything needed installed, you can now run the playbook to configure your Omarchy system:
 
 ```zsh
 cd ~/config && make
 ```
 
-After a several minutes you should have a fully configured setup.
-
-> [!NOTE]  
-> If some Homebrew commands fail, you might need to agree to Xcode's license or fix some other Homebrew issue. Run `brew doctor` to see if this is
+After several minutes you should have a fully configured setup.
 
 </details>
 
@@ -119,12 +93,6 @@ Sadly not absolutely everything can be done with an Ansible playbook, so there a
 
 </details>
 
-### 🐧 Linux Support
+## Credits
 
-I have not yet tried this setup on any Linux environment but if I did I am sure there would be several issues.
-
-That being said, at a later date I will begin work on a new `linux` branch of this repository that is designed to specifically for configuring any Linux distro of my choosing with a similar setup.
-
-### ❤️ Credits
-
-Massive shoutout to [Jeff Geerling (@geerlingguy)](https://github.com/geerlingguy). His own repository to set up a new macOS device for development, [`mac-dev-playbook`](https://github.com/geerlingguy/mac-dev-playbook), was a massive help & source of great information on how to set up my own project with a similar structure but to meet my own requirements
+Massive shoutout to [Jeff Geerling (@geerlingguy)](https://github.com/geerlingguy). His own repository to set up a new macOS device for development, [`mac-dev-playbook`](https://github.com/geerlingguy/mac-dev-playbook), was a massive help & source of great information on how to set up my own project with a similar structure but to meet my own requirements.

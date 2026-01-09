@@ -1,5 +1,5 @@
 ---
-# fnm is installed via Homebrew, this task handles configuration
+# fnm is installed via pacman/AUR, this task handles configuration
 
 - name: Install Node.js versions via fnm
   ansible.builtin.shell:
@@ -9,14 +9,14 @@
       fnm install {{ item }}
     executable: /bin/zsh
   environment:
-    PATH: "/opt/homebrew/bin:{{ ansible_facts['env']['PATH'] }}"
+    PATH: "/usr/bin:{{ ansible_facts['env']['PATH'] }}"
   register: fnm_install_result
   changed_when: "'Installing' in fnm_install_result.stderr"
   with_items: "{{ fnm_nodejs_versions }}"
 
 - name: Check if default Node.js version is set
   ansible.builtin.stat:
-    path: "{{ ansible_facts['env']['HOME'] }}/Library/Application Support/fnm/aliases/default"
+    path: "{{ ansible_facts['env']['HOME'] }}/.local/share/fnm/aliases/default"
   register: fnm_default_alias
 
 - name: Set default Node.js version
@@ -28,7 +28,7 @@
       fnm default $(node --version)
     executable: /bin/zsh
   environment:
-    PATH: "/opt/homebrew/bin:{{ ansible_facts['env']['PATH'] }}"
+    PATH: "/usr/bin:{{ ansible_facts['env']['PATH'] }}"
   when: not fnm_default_alias.stat.exists
 
 - name: Get default Node.js bin path
@@ -40,7 +40,7 @@
       dirname $(which node)
     executable: /bin/zsh
   environment:
-    PATH: "/opt/homebrew/bin:{{ ansible_facts['env']['PATH'] }}"
+    PATH: "/usr/bin:{{ ansible_facts['env']['PATH'] }}"
   register: fnm_node_bin_path
   changed_when: false
 
@@ -67,4 +67,4 @@
     executable: /bin/zsh
     creates: "{{ ansible_facts['env']['HOME'] }}/.oh-my-zsh/plugins/fnm/_fnm"
   environment:
-    PATH: "/opt/homebrew/bin:{{ ansible_facts['env']['PATH'] }}"
+    PATH: "/usr/bin:{{ ansible_facts['env']['PATH'] }}"
