@@ -1,13 +1,15 @@
 ---
-- name: Check if Rust toolchain is installed
-  ansible.builtin.stat:
-    path: "{{ ansible_facts['env']['HOME'] }}/.cargo/bin/cargo"
-  register: cargo_installed
+- name: Check if stable Rust toolchain is installed
+  ansible.builtin.command:
+    cmd: rustup toolchain list
+  register: rustup_toolchains
+  changed_when: false
+  failed_when: false
 
 - name: Install stable Rust toolchain
   ansible.builtin.command:
     cmd: rustup default stable
-  when: not cargo_installed.stat.exists
+  when: "'stable' not in rustup_toolchains.stdout"
 
 - name: Install Cargo crates
   community.general.cargo:
