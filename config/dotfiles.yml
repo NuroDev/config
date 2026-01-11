@@ -17,6 +17,8 @@ dotfiles_files:
   - .config/opencode/INSTRUCTIONS.md
   - .config/opencode/opencode.jsonc
 
+  - .config/waybar/config.jsonc
+
   - .config/zsh/aliases
   - .config/zsh/envs
   - .config/zsh/functions
