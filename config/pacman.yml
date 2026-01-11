@@ -6,6 +6,7 @@ pacman_packages:
   - croc
   # - docker
   - ffmpeg
+  - flatpak
   - ghostty
   - git
   - github-cli
