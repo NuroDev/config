@@ -12,6 +12,8 @@ dotfiles_files:
   - .config/ghostty/themes/orng-dark
   - .config/ghostty/themes/orng-light
 
+  - .config/hypr/monitors.conf
+
   - .config/opencode/INSTRUCTIONS.md
   - .config/opencode/opencode.jsonc
 
