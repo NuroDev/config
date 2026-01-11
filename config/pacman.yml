@@ -4,8 +4,7 @@ pacman_packages:
   - bat
   - btop
   - croc
-  - deno
-  - docker
+  # - docker
   - ffmpeg
   - ghostty
   - git
@@ -19,9 +18,9 @@ pacman_packages:
   - nmap
   - oha
   - openssh
-  - procps-ng
   - ripgrep
   - rustup
+  - spaceship-prompt
   - starship
   - terraform
   - tokei
