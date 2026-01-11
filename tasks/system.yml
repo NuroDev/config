@@ -15,5 +15,6 @@
 - name: Create `.hushlogin` file
   ansible.builtin.file:
     path: "{{ ansible_facts['env']['HOME'] }}/.hushlogin"
-    state: touch
+    state: file
     mode: "0644"
+  when: not ansible_facts['env']['HOME'] + '/.hushlogin' is file
