@@ -19,7 +19,7 @@ pacman_packages:
   - oha
   - openssh
   - ripgrep
-  - rustup
+  # - rustup
   - spaceship-prompt
   - starship
   - terraform
@@ -36,7 +36,7 @@ pacman_packages:
 
 # AUR packages (via yay)
 aur_packages:
-  - 1password
+  # - 1password
   - bun-bin
   - discord
   - fnm
