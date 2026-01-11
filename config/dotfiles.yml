@@ -2,21 +2,27 @@
 configure_dotfiles: true
 
 dotfiles_repo: https://github.com/nurodev/dotfiles.git
-dotfiles_repo_version: main
+dotfiles_repo_version: omarchy
 dotfiles_repo_accept_hostkey: true
 dotfiles_repo_local_destination: ~/dotfiles
 dotfiles_files:
-  - .aliases
   - .config/btop/btop.conf
+
   - .config/ghostty/config
   - .config/ghostty/themes/orng-dark
   - .config/ghostty/themes/orng-light
+
   - .config/opencode/INSTRUCTIONS.md
   - .config/opencode/opencode.jsonc
+
+  - .config/zsh/aliases
+  - .config/zsh/envs
+  - .config/zsh/functions
+  - .config/zsh/init
+  - .config/zsh/shell
+
   - .fet
-  - .functions
   - .gitconfig
   - .gitignore
-  - .nanorc
   - .nirc
   - .zshrc
