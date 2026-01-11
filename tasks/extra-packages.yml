@@ -6,7 +6,7 @@
 
 - name: Initialize rustup and install stable toolchain
   ansible.builtin.shell:
-    cmd: rustup-init -y --no-modify-path
+    cmd: rustup -y --no-modify-path
     executable: /bin/zsh
   environment:
     PATH: "/usr/bin:{{ ansible_facts['env']['PATH'] }}"
