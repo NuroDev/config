@@ -19,7 +19,7 @@
     use: yay
     state: present
   become: true
-  become_user: "{{ ansible_user_id }}"
+  become_user: "{{ ansible_facts['user_id'] }}"
   loop: "{{ aur_packages }}"
   when: aur_packages is defined and aur_packages | length > 0
   tags: packages

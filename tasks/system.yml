@@ -1,19 +1,19 @@
 ---
 - name: Ensure .ssh directory exists
   ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/.ssh"
+    path: "{{ ansible_facts['env']['HOME'] }}/.ssh"
     state: directory
     mode: "0700"
 
 - name: Create SSH key
   community.crypto.openssh_keypair:
-    path: "{{ ansible_env.HOME }}/.ssh/id_ed25519"
+    path: "{{ ansible_facts['env']['HOME'] }}/.ssh/id_ed25519"
     private_key_format: auto
     state: present
     type: ed25519
 
 - name: Create `.hushlogin` file
   ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/.hushlogin"
+    path: "{{ ansible_facts['env']['HOME'] }}/.hushlogin"
     state: touch
     mode: "0644"
