@@ -7,3 +7,4 @@
  - Find out how to refresh app launcher list after install flatpaks without restarting
  - Find a Spotify TUI alternative
  - Create a custom Omarchy theme using my / Cloudflare orng color palette
+ - Fix CI linting errors
