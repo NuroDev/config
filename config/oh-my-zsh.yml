@@ -2,6 +2,7 @@
 users:
   - username: "{{ ansible_user_id }}"
 
+oh_my_zsh_repo: https://github.com/ohmyzsh/ohmyzsh.git
 oh_my_zsh_install: true
 oh_my_zsh_write_zshrc: false
 oh_my_zsh_update_mode: reminder
