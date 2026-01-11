@@ -41,6 +41,7 @@ aur_packages:
   - bun-bin
   - discord
   - fnm
+  - helium-browser-bin
   - hytale-launcher-bin
   - ollama
   - opentofu
