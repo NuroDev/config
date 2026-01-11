@@ -16,5 +16,7 @@
     name: "{{ item }}"
     use: yay
     state: present
+  become: true
+  become_user: "{{ ansible_user_id }}"
   loop: "{{ aur_packages }}"
   when: aur_packages is defined and aur_packages | length > 0
