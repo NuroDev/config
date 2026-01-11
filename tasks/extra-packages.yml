@@ -4,12 +4,9 @@
     path: "{{ ansible_facts['env']['HOME'] }}/.cargo/bin/cargo"
   register: cargo_installed
 
-- name: Initialize rustup and install stable toolchain
-  ansible.builtin.shell:
-    cmd: rustup -y --no-modify-path
-    executable: /bin/zsh
-  environment:
-    PATH: "/usr/bin:{{ ansible_facts['env']['PATH'] }}"
+- name: Install stable Rust toolchain
+  ansible.builtin.command:
+    cmd: rustup default stable
   when: not cargo_installed.stat.exists
 
 - name: Install Cargo crates
