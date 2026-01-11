@@ -6,10 +6,15 @@
   ignore_errors: true
   changed_when: false
 
+- name: Check if assets directory exists
+  ansible.builtin.stat:
+    path: "{{ ansible_facts['env']['HOME'] }}/assets"
+  register: assets_dir
+
 - name: Clone assets repository
   ansible.builtin.git:
     repo: https://github.com/nurodev/assets.git
     dest: "{{ ansible_facts['env']['HOME'] }}/assets"
     version: main
     accept_hostkey: true
-  when: assets_accessible.rc == 0
+  when: assets_accessible.rc == 0 and not assets_dir.stat.exists
