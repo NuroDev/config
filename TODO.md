@@ -8,3 +8,4 @@
  - Find a Spotify TUI alternative
  - Create a custom Omarchy theme using my / Cloudflare orng color palette
  - Fix CI linting errors
+ - Fix `-` alias to swap between $PWD
