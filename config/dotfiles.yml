@@ -7,6 +7,7 @@ dotfiles_repo_accept_hostkey: true
 dotfiles_repo_local_destination: ~/dotfiles
 dotfiles_files:
   - .aliases
+  - .config/bat/config
   - .config/btop/btop.conf
   - .config/ghostty/config
   - .config/ghostty/themes/orng-dark
