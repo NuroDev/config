@@ -92,6 +92,7 @@ homebrew_cask_apps:
   # - iina
   # - iterm2
   # - monitorcontrol
+  # - mountain-duck
   # - nucleo
   - orbstack
   - qlcolorcode
