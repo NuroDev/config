@@ -17,7 +17,13 @@ dotfiles_files:
   - .config/opencode/INSTRUCTIONS.md
   - .config/opencode/opencode.jsonc
 
-  - .config/zsh/aliases.zsh
+  - .config/zsh/aliases/ansible.zsh
+  - .config/zsh/aliases/cargo.zsh
+  - .config/zsh/aliases/containers.zsh
+  - .config/zsh/aliases/deno.zsh
+  - .config/zsh/aliases/homebrew.zsh
+  - .config/zsh/aliases/misc.zsh
+  - .config/zsh/aliases/nodejs.zsh
   - .config/zsh/envs.zsh
   - .config/zsh/functions.zsh
   - .config/zsh/init.zsh
