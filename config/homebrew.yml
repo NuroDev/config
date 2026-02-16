@@ -95,10 +95,10 @@ homebrew_cask_apps:
   # - mountain-duck
   # - nucleo
   - orbstack
-  - qlcolorcode
-  - qlmarkdown
-  - qlstephen
-  - quicklook-json
+  # - qlcolorcode
+  # - qlmarkdown
+  # - qlstephen
+  # - quicklook-json
   - raycast
   - rocket
   - spotify
