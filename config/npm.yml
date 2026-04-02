@@ -2,6 +2,7 @@
 fnm_npm_global_packages:
   - name: "@antfu/ni"
   - name: "@anthropic-ai/claude-code"
+  - name: "@mariozechner/pi-coding-agent"
   - name: corepack
   - name: jsr
   - name: npm
