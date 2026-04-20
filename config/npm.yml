@@ -9,6 +9,7 @@ fnm_npm_global_packages:
   - name: npm
   - name: opencode-ai
   - name: pnpm
+  - name: workerd
   - name: wrangler
 
 fnm_nodejs_versions:
