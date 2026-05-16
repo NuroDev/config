@@ -1,0 +1,11 @@
+---
+- name: Enable Touch ID for sudo
+  ansible.builtin.copy:
+      dest: /etc/pam.d/sudo_local
+      content: |
+          # Enable Touch ID for sudo. Managed by ~/config.
+          auth       sufficient     pam_tid.so
+      owner: root
+      group: wheel
+      mode: '0444'
+  become: true
