@@ -10,6 +10,18 @@
     private_key_format: auto
     state: present
     type: ed25519
+  register: ssh_key
+
+- name: Read git signing email
+  ansible.builtin.command: git config --global user.email
+  register: git_signing_email
+  changed_when: false
+
+- name: Configure allowed signers for SSH commit signing
+  ansible.builtin.copy:
+    dest: "{{ ansible_env.HOME }}/.ssh/allowed_signers"
+    content: "{{ git_signing_email.stdout }} {{ ssh_key.public_key }}\n"
+    mode: '0644'
 
 - name: Create `.hushlogin` file
   ansible.builtin.file:

@@ -9,6 +9,7 @@
     - config/npm.yml
     - config/oh-my-zsh.yml
     - config/rust.yml
+    - config/system.yml
   roles:
     - role: elliotweiser.osx-command-line-tools
     - role: geerlingguy.mac.homebrew
@@ -20,6 +21,7 @@
       when: configure_dock
     - role: gantsign.oh-my-zsh
   tasks:
+    - ansible.builtin.import_tasks: tasks/system.yml
     - ansible.builtin.import_tasks: tasks/assets.yml
     - ansible.builtin.import_tasks: tasks/extra-packages.yml
     - ansible.builtin.import_tasks: tasks/fnm.yml

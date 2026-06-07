@@ -8,6 +8,20 @@ With that, this guide covers all steps from start to finish on everything I need
 
 Open [1Password](https://1password.com/) & sign in to your account.
 
+## 🔑 GitHub SSH Key & Commit Signing
+
+The playbook generates an `ed25519` SSH key at `~/.ssh/id_ed25519` and writes `~/.ssh/allowed_signers` (used by git to verify your own signatures locally). To finish, register the **public** key with GitHub:
+
+```sh
+# Authentication — required, since the gitconfig rewrites github.com HTTPS to SSH
+gh ssh-key add ~/.ssh/id_ed25519.pub --type authentication --title "$(scutil --get ComputerName)"
+
+# Signing — gives commits the green "Verified" badge
+gh ssh-key add ~/.ssh/id_ed25519.pub --type signing --title "$(scutil --get ComputerName) signing"
+```
+
+If `gh` isn't authenticated yet, add the key manually at <https://github.com/settings/ssh/new>, once as an _Authentication Key_ and once as a _Signing Key_ (same key, two entries).
+
 ## 🌍 Browser
 
 - **Log in to your Arc account**: Open Arc & it should prompt you to sign in to your account.
