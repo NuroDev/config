@@ -34,9 +34,12 @@ dockitems_persist:
   - name: "Ghostty"
     path: "/Applications/Ghostty.app/"
     pos: 6
-  - name: "Yaak"
-    path: "/Applications/Yaak.app/"
+  - name: "ChatGPT"
+    path: "/Applications/ChatGPT.app/"
     pos: 7
+  - name: "Claude"
+    path: "/Applications/Claude.app/"
+    pos: 8
   - name: "Discord"
     path: "/Applications/Discord.app/"
-    pos: 8
+    pos: 9
