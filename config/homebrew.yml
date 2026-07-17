@@ -18,7 +18,6 @@ homebrew_installed_packages:
   - croc
   - deno
   # - docker
-  - docker-completion
   - dockutil
   # - dog
   - duckdb
