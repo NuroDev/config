@@ -12,4 +12,5 @@
     dest: "{{ ansible_facts['env']['HOME'] }}/assets"
     version: main
     accept_hostkey: true
+    update: false
   when: assets_accessible.rc == 0

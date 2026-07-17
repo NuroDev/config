@@ -27,3 +27,5 @@
   ansible.builtin.file:
     path: "{{ ansible_facts['env']['HOME'] }}/.hushlogin"
     state: touch
+    modification_time: preserve
+    access_time: preserve
