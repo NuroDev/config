@@ -1,16 +1,18 @@
 ---
-- name: Check if Rust toolchain is installed
-  ansible.builtin.stat:
-    path: "{{ ansible_facts['env']['HOME'] }}/.cargo/bin/cargo"
-  register: cargo_installed
-
-- name: Initialize rustup and install stable toolchain
-  ansible.builtin.shell:
-    cmd: rustup-init -y --no-modify-path
-    executable: /bin/zsh
+- name: Get installed Rust toolchains
+  ansible.builtin.command:
+    cmd: rustup toolchain list
   environment:
-    PATH: "/opt/homebrew/bin:{{ ansible_facts['env']['PATH'] }}"
-  when: not cargo_installed.stat.exists
+    PATH: "{{ homebrew_prefix }}/opt/rustup/bin:{{ homebrew_prefix }}/bin:{{ ansible_facts['env']['PATH'] }}"
+  register: rustup_toolchains
+  changed_when: false
+
+- name: Install and set default stable Rust toolchain
+  ansible.builtin.command:
+    cmd: rustup default stable
+  environment:
+    PATH: "{{ homebrew_prefix }}/opt/rustup/bin:{{ homebrew_prefix }}/bin:{{ ansible_facts['env']['PATH'] }}"
+  when: "'stable' not in rustup_toolchains.stdout"
 
 - name: Install Cargo crates
   community.general.cargo:
@@ -19,6 +21,6 @@
     state: "{{ item.state | default('present') }}"
     version: "{{ item.version | default(omit) }}"
   environment:
-    PATH: "{{ ansible_facts['env']['HOME'] }}/.cargo/bin:{{ ansible_facts['env']['PATH'] }}"
+    PATH: "{{ homebrew_prefix }}/opt/rustup/bin:{{ ansible_facts['env']['PATH'] }}"
   loop: "{{ rust_crates }}"
   when: rust_crates is defined and rust_crates | length > 0
