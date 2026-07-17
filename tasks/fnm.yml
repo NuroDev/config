@@ -43,6 +43,8 @@
     PATH: "/opt/homebrew/bin:{{ ansible_facts['env']['PATH'] }}"
   register: fnm_node_bin_path
   changed_when: false
+  tags:
+    - npm
 
 - name: Install global npm packages
   community.general.npm:
@@ -54,6 +56,8 @@
     PATH: "{{ fnm_node_bin_path.stdout }}:{{ ansible_facts['env']['PATH'] }}"
   with_items: "{{ fnm_npm_global_packages }}"
   when: fnm_npm_global_packages is defined and fnm_npm_global_packages | length > 0
+  tags:
+    - npm
 
 - name: Ensure fnm zsh plugin directory exists
   ansible.builtin.file:
