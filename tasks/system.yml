@@ -6,7 +6,7 @@
 
 - name: Create SSH key
   community.crypto.openssh_keypair:
-    path: "{{ ansible_env.HOME }}/.ssh/id_ed25519"
+    path: "{{ ansible_facts['env']['HOME'] }}/.ssh/id_ed25519"
     private_key_format: auto
     state: present
     type: ed25519
@@ -19,11 +19,11 @@
 
 - name: Configure allowed signers for SSH commit signing
   ansible.builtin.copy:
-    dest: "{{ ansible_env.HOME }}/.ssh/allowed_signers"
+    dest: "{{ ansible_facts['env']['HOME'] }}/.ssh/allowed_signers"
     content: "{{ git_signing_email.stdout }} {{ ssh_key.public_key }}\n"
     mode: '0644'
 
 - name: Create `.hushlogin` file
   ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/.hushlogin"
+    path: "{{ ansible_facts['env']['HOME'] }}/.hushlogin"
     state: touch
