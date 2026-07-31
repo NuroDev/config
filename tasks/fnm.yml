@@ -50,7 +50,7 @@
   community.general.npm:
     name: "{{ item.name }}"
     global: true
-    state: present
+    state: latest
     version: "{{ item.version | default(omit) }}"
   environment:
     PATH: "{{ fnm_node_bin_path.stdout }}:{{ ansible_facts['env']['PATH'] }}"
