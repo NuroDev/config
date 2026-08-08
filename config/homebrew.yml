@@ -80,6 +80,7 @@ homebrew_cask_apps:
   - chatgpt
   - claude
   - cleanshot
+  - codex
   # - cyberduck
   # - dbngin
   - discord
