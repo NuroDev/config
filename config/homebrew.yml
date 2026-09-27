@@ -65,6 +65,7 @@ homebrew_installed_packages:
   - tokei
   - trash
   - tree
+  - vite-plus
   - watch
   - wget
   - witr
