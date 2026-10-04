@@ -24,5 +24,7 @@
     - ansible.builtin.import_tasks: tasks/system.yml
     - ansible.builtin.import_tasks: tasks/assets.yml
     - ansible.builtin.import_tasks: tasks/extra-packages.yml
-    - ansible.builtin.import_tasks: tasks/fnm.yml
+    - ansible.builtin.import_tasks: tasks/vite-plus.yml
+      tags:
+        - npm
     - ansible.builtin.import_tasks: tasks/touch-id.yml

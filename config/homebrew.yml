@@ -3,6 +3,9 @@ homebrew_taps:
   - blacktop/homebrew-tap
   - henrygd/beszel
 
+homebrew_uninstalled_packages:
+  - fnm
+
 homebrew_installed_packages:
   # - act
   # - ansible
@@ -25,7 +28,6 @@ homebrew_installed_packages:
   # - dust
   - ffmpeg
   # - figlet
-  - fnm
   - gh
   # - gifski
   - git

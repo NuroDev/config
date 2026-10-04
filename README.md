@@ -11,11 +11,16 @@ The core of this project uses [Ansible](https://www.ansible.com/) to manage the 
 - [Ghostty](https://ghostty.org/) as my terminal of choice
 - zsh + [oh-my-zsh](https://ohmyz.sh/) as my shell (+plugins)
 - [OpenCode](https://opencode.ai/) & [Claude Code](https://claude.com/product/claude-code) for AI tooling
-- [`fnm`](https://github.com/Schniz/fnm) for managing Node.js versions
+- [Vite+](https://viteplus.dev/) via Homebrew for managing Node.js versions
 - [Yaak](https://yaak.app/) makes API requests
 - [OrbStack](https://orbstack.dev/) runs my local containers
 
 ## 🦄 Get Started
+
+Vite+ tracks Node.js Current via `vite_plus_nodejs_version: latest` in
+`config/npm.yml`. Global tools are installed with `vp install -g`; Vite+ manages
+npm and pnpm directly, replacing Corepack. The dotfiles shell setup loads Vite+'s
+generated environment and completions.
 
 Before you can get started using this project, you will need to do a few things:
 

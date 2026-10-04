@@ -1,0 +1,84 @@
+---
+- name: Configure Vite+ environment
+  environment:
+    PATH: "{{ homebrew_prefix }}/bin:{{ ansible_facts['env']['PATH'] }}"
+    VP_NODE_VERSION: ""
+  block:
+    - name: Set up Vite+ shims and shell environment
+      ansible.builtin.command:
+        cmd: vp env setup
+      register: vite_plus_setup
+      changed_when: "'Created Shims' in vite_plus_setup.stdout"
+
+    - name: Get Vite+ environment defaults
+      ansible.builtin.command:
+        cmd: vp env default
+      register: vite_plus_defaults
+      changed_when: false
+      check_mode: false
+
+    - name: Set Vite+ environment defaults
+      ansible.builtin.command:
+        argv:
+          - vp
+          - env
+          - default
+          - "{{ item.version }}"
+      loop:
+        - label: Node.js
+          version: "{{ vite_plus_nodejs_version }}"
+        - label: npm
+          version: npm@latest
+        - label: pnpm
+          version: pnpm@latest
+      when: >-
+        ('Default ' ~ item.label ~ ' version: ' ~
+        (item.version | regex_replace('^.*@', '')))
+        not in vite_plus_defaults.stdout_lines
+
+    - name: Get Vite+ environment modes
+      ansible.builtin.command:
+        cmd: "vp env current {{ item }} --json"
+      loop:
+        - node
+        - npm
+        - pnpm
+      register: vite_plus_environments
+      changed_when: false
+      check_mode: false
+
+    - name: Enable Vite+ environment management
+      ansible.builtin.command:
+        cmd: "vp env on {{ item.item }}"
+      loop: "{{ vite_plus_environments.results }}"
+      loop_control:
+        label: "{{ item.item }}"
+      when: >-
+        (item.stdout | from_json).get(
+        'node' if item.item == 'node' else 'package_manager',
+        {}).get('mode') != 'managed'
+
+    - name: Install current Node.js via Vite+
+      ansible.builtin.command:
+        cmd: "vp env install {{ vite_plus_nodejs_version }}"
+      when: >-
+        not (vite_plus_environments.results[0].stdout
+        | from_json).node.installed
+        or (vite_plus_environments.results[0].stdout
+        | from_json).node.mode != 'managed'
+
+    - name: Install global packages via Vite+
+      ansible.builtin.command:
+        argv:
+          - vp
+          - install
+          - -g
+          - --node
+          - "{{ vite_plus_nodejs_version }}"
+          - >-
+            {{ item.name }}{{ ('@' ~ item.version)
+            if item.version is defined else '' }}
+      loop: "{{ vite_plus_global_packages }}"
+      when: >-
+        vite_plus_global_packages is defined
+        and vite_plus_global_packages | length > 0
