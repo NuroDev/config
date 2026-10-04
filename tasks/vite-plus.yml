@@ -67,7 +67,14 @@
         or (vite_plus_environments.results[0].stdout
         | from_json).node.mode != 'managed'
 
-    - name: Install global packages via Vite+
+    - name: Get installed Vite+ global packages
+      ansible.builtin.command:
+        cmd: vp list -g --json
+      register: vite_plus_installed_packages
+      changed_when: false
+      check_mode: false
+
+    - name: Install missing global packages via Vite+
       ansible.builtin.command:
         argv:
           - vp
@@ -78,7 +85,22 @@
           - >-
             {{ item.name }}{{ ('@' ~ item.version)
             if item.version is defined else '' }}
-      loop: "{{ vite_plus_global_packages }}"
+      loop: "{{ vite_plus_global_packages | default([]) }}"
       when: >-
-        vite_plus_global_packages is defined
-        and vite_plus_global_packages | length > 0
+        item.name not in (vite_plus_installed_packages.stdout
+        | from_json | map(attribute='name') | list)
+
+    - name: Update global packages via Vite+
+      ansible.builtin.command:
+        argv:
+          - vp
+          - update
+          - -g
+          - --reinstall-node-mismatch
+          - "{{ item.name }}@{{ item.version | default('latest') }}"
+      loop: "{{ vite_plus_global_packages | default([]) }}"
+      register: vite_plus_package_updates
+      changed_when: "'Updated ' in vite_plus_package_updates.stdout"
+      when: >-
+        item.name in (vite_plus_installed_packages.stdout
+        | from_json | map(attribute='name') | list)
