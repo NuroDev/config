@@ -4,6 +4,13 @@
   command: "{{ osx_script }}"
   changed_when: false
 
+- name: Enable natural scrolling
+  community.general.osx_defaults:
+    domain: NSGlobalDomain
+    key: com.apple.swipescrolldirection
+    type: bool
+    value: true
+
 - name: Create SSH key
   community.crypto.openssh_keypair:
     path: "{{ ansible_facts['env']['HOME'] }}/.ssh/id_ed25519"
