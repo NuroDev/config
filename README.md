@@ -6,7 +6,7 @@ The core of this project uses [Ansible](https://www.ansible.com/) to manage the 
 
 ## 🧰 What I use
 
-- [Arc](https://arc.net/) is my preferred browser
+- [Dia](https://www.diabrowser.com/) is my preferred browser
 - [Raycast](https://www.raycast.com/) is better than Spotlight
 - [Ghostty](https://ghostty.org/) as my terminal of choice
 - zsh + [oh-my-zsh](https://ohmyz.sh/) as my shell (+plugins)

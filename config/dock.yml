@@ -19,8 +19,8 @@ dockitems_remove:
   - System Preferences
   - TV
 dockitems_persist:
-  - name: "Arc"
-    path: "/Applications/Arc.app/"
+  - name: "Dia"
+    path: "/Applications/Dia.app/"
     pos: 2
   - name: "Calendar"
     path: "/Applications/Calendar.app/"

@@ -78,7 +78,6 @@ homebrew_installed_packages:
   - zsh-syntax-highlighting
 
 homebrew_cask_apps:
-  - arc
   - brooklyn
   - chatgpt
   - claude
@@ -109,6 +108,7 @@ homebrew_cask_apps:
   - rocket
   - spotify
   - tableplus
+  - thebrowsercompany-dia
   # - utm
   - visual-studio-code
   - yaak

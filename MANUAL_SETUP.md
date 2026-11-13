@@ -24,12 +24,10 @@ If `gh` isn't authenticated yet, add the key manually at <https://github.com/set
 
 ## 🌍 Browser
 
-- **Log in to your Arc account**: Open Arc & it should prompt you to sign in to your account.
+- **Log in to your Dia account**: Open Dia & it should prompt you to sign in to your account.
 - **Configure settings**:
-  - **Sync sidebar**: Enable the `Sync Sidebar` option.
   - **Warn before quit**: Enable the `Warn before quit` option.
   - **Search engine**: Change the default search engine to `DuckDuckGo`.
-  - **App icon**: Change the icon to `Candy Arc`.
 - **Sign in to everything**: Go through all "common" websites and sign in to all accounts needed.
 
 ## 🚀 Rocket (emojis)
