@@ -1,7 +1,9 @@
 ---
 homebrew_taps:
   - blacktop/homebrew-tap
+  - hashicorp/tap
   - henrygd/beszel
+  - oven-sh/bun
 
 homebrew_uninstalled_packages:
   - fnm
