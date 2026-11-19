@@ -10,6 +10,10 @@ agents_shared_dir: "{{ dotfiles_repo_local_destination }}/.config/agents"
 
 # Skills symlinked into `claude_skills_dir`, one directory each.
 agent_skills:
+  - apple-design
+  - break-ui
+  - emil-design-eng
+  - mobile-native
   - rex
   - security-audit
 
@@ -31,6 +35,7 @@ claude_settings:
     code-review@claude-plugins-official: false
     feature-dev@claude-plugins-official: false
     frontend-design@claude-plugins-official: true
+    mattpocock-skills@claude-plugins-official: true
     pstack@cursor-plugins: true
     rust-analyzer-lsp@claude-plugins-official: true
     security-guidance@claude-plugins-official: true
@@ -89,6 +94,7 @@ claude_plugins:
   - code-review@claude-plugins-official
   - feature-dev@claude-plugins-official
   - frontend-design@claude-plugins-official
+  - mattpocock-skills@claude-plugins-official
   - pstack@cursor-plugins
   - rust-analyzer-lsp@claude-plugins-official
   - security-guidance@claude-plugins-official
