@@ -45,12 +45,52 @@
           | combine(claude_settings, recursive=True) | to_nice_json }}
         mode: '0600'
 
+    - name: Get registered Claude Code marketplaces
+      ansible.builtin.command:
+        cmd: claude plugin marketplace list --json
+      register: claude_registered_marketplaces
+      changed_when: false
+      check_mode: false
+
+    # `claude plugin install` only resolves marketplaces already on
+    # disk; it never reads the settings file written above.
+    - name: Register missing Claude Code marketplaces
+      ansible.builtin.command:
+        argv:
+          - claude
+          - plugin
+          - marketplace
+          - add
+          - "{{ item.value.source.repo | default(item.value.source.url) }}"
+          - --scope
+          - user
+      loop: >-
+        {{ claude_settings.extraKnownMarketplaces | default({}) | dict2items }}
+      loop_control:
+        label: "{{ item.key }}"
+      when: >-
+        item.key not in (claude_registered_marketplaces.stdout | from_json
+        | map(attribute='name') | list)
+
     - name: Get installed Claude Code plugins
       ansible.builtin.command:
         cmd: claude plugin list --json
       register: claude_installed_plugins
       changed_when: false
       check_mode: false
+
+    - name: Select the Claude Code plugins still to install
+      ansible.builtin.set_fact:
+        claude_missing_plugins: >-
+          {{ claude_plugins | difference(claude_installed_plugins.stdout
+          | from_json | selectattr('scope', 'equalto', 'user')
+          | map(attribute='id') | list) }}
+
+    - name: Refresh Claude Code marketplaces before installing
+      ansible.builtin.command:
+        cmd: claude plugin marketplace update
+      changed_when: false
+      when: claude_missing_plugins | length > 0
 
     - name: Install missing Claude Code plugins
       ansible.builtin.command:
@@ -62,8 +102,4 @@
           - --scope
           - user
           - --yes
-      loop: "{{ claude_plugins }}"
-      when: >-
-        item not in (claude_installed_plugins.stdout | from_json
-        | selectattr('scope', 'equalto', 'user')
-        | map(attribute='id') | list)
+      loop: "{{ claude_missing_plugins }}"

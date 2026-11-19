@@ -36,6 +36,10 @@ claude_settings:
     swift-lsp@claude-plugins-official: true
     typescript-lsp@claude-plugins-official: true
   extraKnownMarketplaces:
+    claude-plugins-official:
+      source:
+        source: github
+        repo: anthropics/claude-plugins-official
     cloudflare:
       source:
         source: git
@@ -74,9 +78,11 @@ claude_settings:
     enabled: true
     mode: hold
 
-# Installed with `claude plugin install`, which also registers an
-# unknown marketplace. Enable/disable state comes from
-# `claude_settings.enabledPlugins` above, not from installing.
+# Installed with `claude plugin install`, which can only resolve a
+# marketplace already registered on disk, so every marketplace these
+# reference must be declared in `extraKnownMarketplaces` above.
+# Enable/disable state comes from `claude_settings.enabledPlugins`,
+# not from installing.
 claude_plugins:
   - cloudflare@cloudflare
   - code-review@claude-plugins-official
