@@ -11,7 +11,16 @@ agents_shared_dir: "{{ dotfiles_repo_local_destination }}/.config/agents"
 # Skills shared by every agent. Each is symlinked into every directory
 # in `agent_skill_dirs`.
 agent_skills:
+  - agents-sdk
+  - cf-cli
+  - cloudflare
+  - durable-objects
+  - frameworks-on-cloudflare
+  - gateway-workers
   - security-audit
+  - workers-best-practices
+  - workers-profiling
+  - wrangler
 
 agent_skill_dirs:
   - ~/.claude/skills
