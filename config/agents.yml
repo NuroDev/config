@@ -12,7 +12,6 @@ agents_shared_dir: "{{ dotfiles_repo_local_destination }}/.config/agents"
 # in `agent_skill_dirs`.
 agent_skills:
   - security-audit
-  - ship
 
 agent_skill_dirs:
   - ~/.claude/skills
