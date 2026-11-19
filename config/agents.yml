@@ -11,6 +11,7 @@ agents_shared_dir: "{{ dotfiles_repo_local_destination }}/.config/agents"
 # Skills shared by every agent. Each is symlinked into every directory
 # in `agent_skill_dirs`.
 agent_skills:
+  - security-audit
   - ship
 
 agent_skill_dirs:
