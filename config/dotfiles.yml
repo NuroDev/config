@@ -6,7 +6,7 @@ dotfiles_repo_version: main
 dotfiles_repo_accept_hostkey: true
 dotfiles_repo_local_destination: ~/dotfiles
 dotfiles_files:
-  - .codex/AGENTS.md
+  - .claude/CLAUDE.md
 
   - .config/bat/config
 
@@ -16,7 +16,6 @@ dotfiles_files:
   - .config/ghostty/themes/orng-dark
   - .config/ghostty/themes/orng-light
 
-  - .config/opencode/INSTRUCTIONS.md
   - .config/opencode/opencode.jsonc
 
   - .config/zsh/aliases/ansible.zsh

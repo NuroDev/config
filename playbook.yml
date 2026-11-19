@@ -2,6 +2,7 @@
 - name: Configure macOS
   hosts: localhost
   vars_files:
+    - config/agents.yml
     - config/dock.yml
     - config/dotfiles.yml
     - config/homebrew.yml
@@ -27,4 +28,7 @@
     - ansible.builtin.import_tasks: tasks/vite-plus.yml
       tags:
         - npm
+    - ansible.builtin.import_tasks: tasks/agents.yml
+      tags:
+        - agents
     - ansible.builtin.import_tasks: tasks/touch-id.yml

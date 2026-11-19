@@ -1,0 +1,97 @@
+---
+# Shared AI agent configuration.
+#
+# Instruction docs & skills live in the dotfiles repo under
+# `.config/agents/`. This file holds the wiring that symlinks cannot
+# express: the registries each agent keeps behind a CLI, and the
+# settings keys Claude Code rewrites for itself.
+
+agents_shared_dir: "{{ dotfiles_repo_local_destination }}/.config/agents"
+
+# Skills shared by every agent. Each is symlinked into every directory
+# in `agent_skill_dirs`.
+agent_skills:
+  - ship
+
+agent_skill_dirs:
+  - ~/.claude/skills
+  - ~/.codex/skills
+
+# Codex reads instructions from `$CODEX_HOME/AGENTS.md` and takes no
+# path option, so the canonical doc has to be linked into place.
+agent_instruction_links:
+  - ~/.codex/AGENTS.md
+
+# Merged over whatever Claude Code has already written to
+# `~/.claude/settings.json`, so keys the app owns survive and these win.
+claude_settings:
+  alwaysThinkingEnabled: true
+  agentPushNotifEnabled: true
+  disableArtifact: true
+  disableBundledSkills: true
+  disableClaudeAiConnectors: true
+  disableRemoteControl: true
+  disableWorkflows: true
+  effortLevel: high
+  enabledPlugins:
+    cloudflare@cloudflare: true
+    code-review@claude-plugins-official: false
+    feature-dev@claude-plugins-official: false
+    frontend-design@claude-plugins-official: true
+    pstack@cursor-plugins: true
+    rust-analyzer-lsp@claude-plugins-official: true
+    security-guidance@claude-plugins-official: true
+    swift-lsp@claude-plugins-official: true
+    typescript-lsp@claude-plugins-official: true
+  extraKnownMarketplaces:
+    cloudflare:
+      source:
+        source: git
+        url: https://github.com/cloudflare/skills.git
+    cursor-plugins:
+      source:
+        source: git
+        url: https://github.com/cursor/plugins.git
+  hooks:
+    SessionStart:
+      - hooks:
+          - type: command
+            command: >-
+              /bin/sh -c 'rex __internal session-start --agent claude
+              2>/dev/null || true'
+            timeout: 5
+  permissions:
+    defaultMode: auto
+    deny:
+      - CronCreate
+      - CronDelete
+      - CronList
+      - DesignSync
+      - EnterPlanMode
+      - ExitPlanMode
+      - NotebookEdit
+      - PushNotification
+      - RemoteTrigger
+      - ReportFindings
+      - ScheduleWakeup
+      - SendMessage
+  preferredNotifChannel: notifications_disabled
+  skipAutoPermissionPrompt: true
+  tui: default
+  voice:
+    enabled: true
+    mode: hold
+
+# Installed with `claude plugin install`, which also registers an
+# unknown marketplace. Enable/disable state comes from
+# `claude_settings.enabledPlugins` above, not from installing.
+claude_plugins:
+  - cloudflare@cloudflare
+  - code-review@claude-plugins-official
+  - feature-dev@claude-plugins-official
+  - frontend-design@claude-plugins-official
+  - pstack@cursor-plugins
+  - rust-analyzer-lsp@claude-plugins-official
+  - security-guidance@claude-plugins-official
+  - swift-lsp@claude-plugins-official
+  - typescript-lsp@claude-plugins-official

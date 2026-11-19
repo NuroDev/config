@@ -15,12 +15,15 @@ The core of this project uses [Ansible](https://www.ansible.com/) to manage the 
 - [Yaak](https://yaak.app/) makes API requests
 - [OrbStack](https://orbstack.dev/) runs my local containers
 
+## 🤖 AI tooling
+
+Every agent shares one instruction doc & one set of skills, both tracked in the [dotfiles](https://github.com/nurodev/dotfiles) repo under `.config/agents/`. `config/agents.yml` declares the wiring that symlinks cannot express (Claude Code settings & plugins) and `tasks/agents.yml` applies it. Run it on its own with `make agents`.
+
+Claude Code rewrites its own `settings.json`, so the declared keys are merged over whatever is already there rather than replacing the file.
+
 ## 🦄 Get Started
 
-Vite+ tracks Node.js Current via `vite_plus_nodejs_version: latest` in
-`config/npm.yml`. Global tools are installed with `vp install -g`; Vite+ manages
-npm and pnpm directly, replacing Corepack. The dotfiles shell setup loads Vite+'s
-generated environment and completions.
+Vite+ tracks Node.js Current via `vite_plus_nodejs_version: latest` in `config/npm.yml`. Global tools are installed with `vp install -g`; Vite+ manages npm and pnpm directly, replacing Corepack. The dotfiles shell setup loads Vite+'s generated environment and completions.
 
 Before you can get started using this project, you will need to do a few things:
 

@@ -1,0 +1,74 @@
+---
+- name: Configure AI agents
+  environment:
+    PATH: >-
+      {{ ansible_facts['env']['HOME'] }}/.local/share/vite-plus/bin:{{
+      homebrew_prefix }}/bin:{{ ansible_facts['env']['PATH'] }}
+  block:
+    - name: Link shared agent config into place
+      ansible.builtin.file:
+        src: "{{ agents_shared_dir }}"
+        dest: "{{ ansible_facts['env']['HOME'] }}/.config/agents"
+        state: link
+
+    - name: Link canonical instructions for agents with a fixed path
+      ansible.builtin.file:
+        src: "{{ agents_shared_dir }}/AGENTS.md"
+        dest: "{{ item | expanduser }}"
+        state: link
+        force: true
+      loop: "{{ agent_instruction_links }}"
+
+    - name: Ensure agent skill directories exist
+      ansible.builtin.file:
+        path: "{{ item | expanduser }}"
+        state: directory
+        mode: '0755'
+      loop: "{{ agent_skill_dirs }}"
+
+    - name: Link shared skills into each agent
+      ansible.builtin.file:
+        src: "{{ agents_shared_dir }}/skills/{{ item.1 }}"
+        dest: "{{ item.0 | expanduser }}/{{ item.1 }}"
+        state: link
+      loop: "{{ agent_skill_dirs | product(agent_skills) | list }}"
+      loop_control:
+        label: "{{ item.0 }}/{{ item.1 }}"
+
+    - name: Read existing Claude Code settings
+      ansible.builtin.slurp:
+        src: "{{ ansible_facts['env']['HOME'] }}/.claude/settings.json"
+      register: claude_settings_existing
+      failed_when: false
+
+    - name: Merge managed Claude Code settings
+      ansible.builtin.copy:
+        dest: "{{ ansible_facts['env']['HOME'] }}/.claude/settings.json"
+        content: >-
+          {{ claude_settings_existing.content | default('e30=')
+          | b64decode | from_json
+          | combine(claude_settings, recursive=True) | to_nice_json }}
+        mode: '0600'
+
+    - name: Get installed Claude Code plugins
+      ansible.builtin.command:
+        cmd: claude plugin list --json
+      register: claude_installed_plugins
+      changed_when: false
+      check_mode: false
+
+    - name: Install missing Claude Code plugins
+      ansible.builtin.command:
+        argv:
+          - claude
+          - plugin
+          - install
+          - "{{ item }}"
+          - --scope
+          - user
+          - --yes
+      loop: "{{ claude_plugins }}"
+      when: >-
+        item not in (claude_installed_plugins.stdout | from_json
+        | selectattr('scope', 'equalto', 'user')
+        | map(attribute='id') | list)
