@@ -10,6 +10,7 @@ agents_shared_dir: "{{ dotfiles_repo_local_destination }}/.config/agents"
 
 # Skills symlinked into `claude_skills_dir`, one directory each.
 agent_skills:
+  - rex
   - security-audit
 
 claude_skills_dir: ~/.claude/skills
@@ -54,7 +55,7 @@ claude_settings:
           - type: command
             command: >-
               /bin/sh -c 'rex __internal session-start --agent claude
-              2>/dev/null || true'
+              --feature-session-naming=false 2>/dev/null || true'
             timeout: 5
   permissions:
     defaultMode: auto
