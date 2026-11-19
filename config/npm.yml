@@ -4,7 +4,6 @@ vite_plus_global_packages:
   - name: "@anthropic-ai/claude-code"
   - name: cf
   - name: jsr
-  - name: opencode-ai
   - name: workerd
   - name: wrangler
 

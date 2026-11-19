@@ -16,8 +16,6 @@ dotfiles_files:
   - .config/ghostty/themes/orng-dark
   - .config/ghostty/themes/orng-light
 
-  - .config/opencode/opencode.jsonc
-
   - .config/zsh/aliases/ansible.zsh
   - .config/zsh/aliases/cargo.zsh
   - .config/zsh/aliases/containers.zsh

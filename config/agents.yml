@@ -8,19 +8,11 @@
 
 agents_shared_dir: "{{ dotfiles_repo_local_destination }}/.config/agents"
 
-# Skills shared by every agent. Each is symlinked into every directory
-# in `agent_skill_dirs`.
+# Skills symlinked into `claude_skills_dir`, one directory each.
 agent_skills:
   - security-audit
 
-agent_skill_dirs:
-  - ~/.claude/skills
-  - ~/.codex/skills
-
-# Codex reads instructions from `$CODEX_HOME/AGENTS.md` and takes no
-# path option, so the canonical doc has to be linked into place.
-agent_instruction_links:
-  - ~/.codex/AGENTS.md
+claude_skills_dir: ~/.claude/skills
 
 # Merged over whatever Claude Code has already written to
 # `~/.claude/settings.json`, so keys the app owns survive and these win.

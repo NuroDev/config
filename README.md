@@ -10,14 +10,14 @@ The core of this project uses [Ansible](https://www.ansible.com/) to manage the 
 - [Raycast](https://www.raycast.com/) is better than Spotlight
 - [Ghostty](https://ghostty.org/) as my terminal of choice
 - zsh + [oh-my-zsh](https://ohmyz.sh/) as my shell (+plugins)
-- [OpenCode](https://opencode.ai/) & [Claude Code](https://claude.com/product/claude-code) for AI tooling
+- [Claude Code](https://claude.com/product/claude-code) for AI tooling
 - [Vite+](https://viteplus.dev/) via Homebrew for managing Node.js versions
 - [Yaak](https://yaak.app/) makes API requests
 - [OrbStack](https://orbstack.dev/) runs my local containers
 
 ## 🤖 AI tooling
 
-Every agent shares one instruction doc & one set of skills, both tracked in the [dotfiles](https://github.com/nurodev/dotfiles) repo under `.config/agents/`. `config/agents.yml` declares the wiring that symlinks cannot express (Claude Code settings & plugins) and `tasks/agents.yml` applies it. Run it on its own with `make agents`.
+Claude Code's instruction doc & skills are tracked in the [dotfiles](https://github.com/nurodev/dotfiles) repo under `.config/agents/`. `config/agents.yml` declares the wiring that symlinks cannot express (Claude Code settings & plugins) and `tasks/agents.yml` applies it. Run it on its own with `make agents`.
 
 Claude Code rewrites its own `settings.json`, so the declared keys are merged over whatever is already there rather than replacing the file.
 

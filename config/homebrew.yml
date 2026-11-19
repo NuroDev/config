@@ -19,7 +19,6 @@ homebrew_installed_packages:
   - btop
   - bun
   # - colima
-  - codex
   - croc
   - deno
   # - docker
@@ -84,7 +83,6 @@ homebrew_cask_apps:
   - chatgpt
   - claude
   - cleanshot
-  - codex
   # - cyberduck
   # - dbngin
   - discord
