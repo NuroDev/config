@@ -5,6 +5,16 @@
       {{ ansible_facts['env']['HOME'] }}/.local/share/vite-plus/bin:{{
       homebrew_prefix }}/bin:{{ ansible_facts['env']['PATH'] }}
   block:
+    - name: Ensure parent directories for agent links exist
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        mode: '0755'
+      loop: >-
+        {{ ([ansible_facts['env']['HOME'] ~ '/.config/agents']
+        + agent_instruction_links)
+        | map('expanduser') | map('dirname') | unique | list }}
+
     - name: Link shared agent config into place
       ansible.builtin.file:
         src: "{{ agents_shared_dir }}"
