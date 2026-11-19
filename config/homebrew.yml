@@ -79,7 +79,6 @@ homebrew_installed_packages:
   - zsh-syntax-highlighting
 
 homebrew_cask_apps:
-  - brooklyn
   - claude
   - cleanshot
   # - cyberduck
