@@ -6,6 +6,9 @@ default:
 agents:
 	ansible-playbook playbook.yml --tags agents
 
+dock:
+	ansible-playbook playbook.yml --tags dock
+
 install:
 	ansible-galaxy install -r requirements.yml
 
