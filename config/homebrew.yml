@@ -4,6 +4,7 @@ homebrew_taps:
   - hashicorp/tap
   - henrygd/beszel
   - oven-sh/bun
+  - stablyai/orca
 
 homebrew_uninstalled_packages:
   - fnm
@@ -105,6 +106,7 @@ homebrew_cask_apps:
   - raycast
   - rocket
   - spotify
+  - stablyai/orca/orca
   - tableplus
   - thebrowsercompany-dia
   # - utm

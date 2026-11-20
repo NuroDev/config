@@ -40,6 +40,9 @@ dockitems_persist:
   - name: "Claude"
     path: "/Applications/Claude.app/"
     pos: 8
+  - name: "Orca"
+    path: "/Applications/Orca.app/"
+    pos: 9
   - name: "Discord"
     path: "/Applications/Discord.app/"
-    pos: 9
+    pos: 10
