@@ -1,4 +1,4 @@
-.PHONY: agents default install npm
+.PHONY: agents default dock install npm
 
 default:
 	ansible-playbook playbook.yml --ask-become-pass
@@ -8,6 +8,7 @@ agents:
 
 dock:
 	ansible-playbook playbook.yml --tags dock
+	killall Dock
 
 install:
 	ansible-galaxy install -r requirements.yml
