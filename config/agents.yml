@@ -100,3 +100,20 @@ claude_plugins:
   - security-guidance@claude-plugins-official
   - swift-lsp@claude-plugins-official
   - typescript-lsp@claude-plugins-official
+
+# Uninstalled where still present, so a machine that had them ends up
+# like a fresh one. Dropping an entry from `claude_plugins` or
+# `extraKnownMarketplaces` is not enough: installs are never undone, and
+# the settings merge only adds keys. `claude plugin uninstall` also
+# clears the plugin's `enabledPlugins` key, and
+# `claude plugin marketplace remove` its `extraKnownMarketplaces` entry.
+# Move an entry here when it leaves the lists above, for example:
+#
+#   claude_plugins_retired:
+#     - some-plugin@some-marketplace
+#
+#   claude_marketplaces_retired:
+#     - some-marketplace
+claude_plugins_retired: []
+
+claude_marketplaces_retired: []

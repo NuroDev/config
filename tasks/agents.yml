@@ -103,3 +103,30 @@
           - user
           - --yes
       loop: "{{ claude_missing_plugins }}"
+
+    - name: Uninstall retired Claude Code plugins
+      ansible.builtin.command:
+        argv:
+          - claude
+          - plugin
+          - uninstall
+          - "{{ item }}"
+          - --scope
+          - user
+      loop: >-
+        {{ claude_plugins_retired | intersect(claude_installed_plugins.stdout
+        | from_json | selectattr('scope', 'equalto', 'user')
+        | map(attribute='id') | list) }}
+
+    - name: Remove retired Claude Code marketplaces
+      ansible.builtin.command:
+        argv:
+          - claude
+          - plugin
+          - marketplace
+          - remove
+          - "{{ item }}"
+      loop: >-
+        {{ claude_marketplaces_retired
+        | intersect(claude_registered_marketplaces.stdout
+        | from_json | map(attribute='name') | list) }}
