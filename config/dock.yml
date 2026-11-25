@@ -34,8 +34,8 @@ dockitems_persist:
   - name: "Ghostty"
     path: "/Applications/Ghostty.app/"
     pos: 6
-  - name: "Rex Beta"
-    path: "/Applications/Rex Beta.app/"
+  - name: "Rex"
+    path: "/Applications/Rex.app/"
     pos: 7
   - name: "Claude"
     path: "/Applications/Claude.app/"
